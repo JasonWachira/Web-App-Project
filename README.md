@@ -1,4 +1,4 @@
-# Web App Project – Group 8
+# Web App Project – Group 6
 
 ## Members
 - Jason Wachira – 172995  
