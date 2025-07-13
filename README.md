@@ -2,7 +2,7 @@
 
 This project is structured with two main parts:
 - `frontend/`: Contains the React-based user interface
-- `backend/`: Contains the Node.js/Express server
+- `backend/`: Contains the backend server
 
 ## Getting Started
 
