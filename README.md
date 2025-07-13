@@ -9,9 +9,10 @@ This project is structured with two main parts:
 Follow the steps below to set up and run both frontend and backend locally.
 
 ---
-## Clone the repository
+## Clone the repository and cd into it
 ```bash
 git clone https://github.com/JasonWachira/Web-App-Project.git
+cd Web-App-Project
 ```
 ##  Frontend Setup
 
