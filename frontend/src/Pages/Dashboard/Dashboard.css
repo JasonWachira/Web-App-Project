@@ -1,0 +1,322 @@
+/* Dashboard Styles - Consistent with Home Page */
+.dashboard {
+  font-family: Arial, Helvetica, sans-serif;
+  min-height: 100vh;
+  background: #f8f9fa;
+  padding: 60px 20px;
+}
+
+.dashboard h1 {
+  text-align: center;
+  font-size: 2.8rem;
+  font-weight: 300;
+  color: #333;
+  margin-bottom: 50px;
+  position: relative;
+}
+
+.dashboard h1::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 3px;
+  background: linear-gradient(45deg, #1f937e, #2db391);
+  border-radius: 2px;
+}
+
+/* Profile Section */
+.profile-section {
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+  padding: 30px;
+  margin-bottom: 30px;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 30px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s;
+}
+
+.profile-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(31, 147, 126, 0.1), transparent);
+  transition: left 0.5s;
+}
+
+.profile-section:hover::before {
+  left: 100%;
+}
+
+.profile-section:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+}
+
+.profile-section h2 {
+  color: #1f937e;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  position: relative;
+  display: inline-block;
+}
+
+.profile-section h2::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(45deg, #1f937e, #2db391);
+  border-radius: 1px;
+}
+
+.profile-section p {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 15px;
+  line-height: 1.6;
+  padding: 8px 0;
+  border-bottom: 1px solid #f8f9fa;
+}
+
+.profile-section p:last-child {
+  border-bottom: none;
+}
+
+.profile-section strong {
+  color: #333;
+  font-weight: bold;
+  display: inline-block;
+  min-width: 100px;
+  margin-right: 10px;
+}
+
+/* Applications Section */
+.applications-section {
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+  padding: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s;
+}
+
+.applications-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(31, 147, 126, 0.1), transparent);
+  transition: left 0.5s;
+}
+
+.applications-section:hover::before {
+  left: 100%;
+}
+
+.applications-section:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+}
+
+.applications-section h2 {
+  color: #1f937e;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 25px;
+  position: relative;
+  display: inline-block;
+}
+
+.applications-section h2::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(45deg, #1f937e, #2db391);
+  border-radius: 1px;
+}
+
+.applications-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.applications-section li {
+  background: #f8f9fa;
+  padding: 20px 25px;
+  margin-bottom: 15px;
+  border-radius: 15px;
+  border-left: 4px solid #1f937e;
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+
+.applications-section li::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(31, 147, 126, 0.05), transparent);
+  transition: left 0.3s;
+}
+
+.applications-section li:hover::before {
+  left: 100%;
+}
+
+.applications-section li:hover {
+  background: white;
+  transform: translateX(5px);
+  box-shadow: 0 4px 15px rgba(31, 147, 126, 0.1);
+}
+
+.applications-section li:last-child {
+  margin-bottom: 0;
+}
+
+.applications-section li strong {
+  color: #333;
+  font-weight: bold;
+  font-size: 1.1rem;
+  display: block;
+  margin-bottom: 5px;
+}
+
+/* Status badges */
+.applications-section li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.applications-section li .status-badge {
+  padding: 6px 16px;
+  border-radius: 25px;
+  font-size: 0.85rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.applications-section li .status-badge.pending {
+  background: linear-gradient(45deg, #f59e0b, #fbbf24);
+  color: white;
+}
+
+.applications-section li .status-badge.approved {
+  background: linear-gradient(45deg, #10b981, #34d399);
+  color: white;
+}
+
+.applications-section li .status-badge.rejected {
+  background: linear-gradient(45deg, #ef4444, #f87171);
+  color: white;
+}
+
+.applications-section li .status-badge.submitted {
+  background: linear-gradient(45deg, #1f937e, #2db391);
+  color: white;
+}
+
+/* No applications message */
+.applications-section > p {
+  text-align: center;
+  color: #666;
+  font-size: 1.1rem;
+  padding: 40px 20px;
+  background: #f8f9fa;
+  border-radius: 15px;
+  border: 2px dashed #e9ecef;
+  font-style: italic;
+}
+
+/* Login prompt styling */
+.dashboard > p {
+  text-align: center;
+  color: #ef4444;
+  font-size: 1.5rem;
+  font-weight: bold;
+  background: white;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+  margin: 60px auto;
+  max-width: 600px;
+  border: 2px solid #fecaca;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .dashboard {
+    padding: 30px 15px;
+  }
+  
+  .dashboard h1 {
+    font-size: 2.2rem;
+    margin-bottom: 30px;
+  }
+  
+  .profile-section,
+  .applications-section {
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .applications-section li {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  
+  .applications-section li .status-badge {
+    align-self: flex-end;
+  }
+  
+  .profile-section p {
+    padding: 12px 0;
+  }
+  
+  .profile-section strong {
+    min-width: 80px;
+  }
+}
+
+@media (max-width: 480px) {
+  .dashboard h1 {
+    font-size: 1.8rem;
+  }
+  
+  .profile-section h2,
+  .applications-section h2 {
+    font-size: 1.3rem;
+  }
+  
+  .applications-section li {
+    padding: 15px 20px;
+  }
+}
