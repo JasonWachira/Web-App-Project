@@ -1,33 +1,51 @@
-# Web App Project
+# Web App Project – Group 8
 
-This project is structured with two main parts:
-- `frontend/`: Contains the React-based user interface
-- `backend/`: Contains the backend server
+## Members
+- Jason Wachira – 172995  
+- Michelle Chitsaka – 190012  
+- Richard Arnold – 172340  
+- Joseph Musau – 192091  
+
+---
+
+## Project Overview
+
+We were tasked with developing a Scholarship Management System that allows users to:
+
+- Register and log in (User authentication)
+- View a list of available scholarships with filtering by category
+- Apply for desired scholarships
+- View user profiles and check application status
+
+This project is structured into two main parts:
+- `frontend/` – built with React
+- `backend/` – built with Node.js/Express
+
+---
 
 ## Getting Started
 
-Follow the steps below to set up and run both frontend and backend locally.
+Follow the steps below to clone, set up, and run both the frontend and backend locally.
 
 ---
-## Clone the repository and cd into it
+
+## Clone the Repository
+
 ```bash
 git clone https://github.com/JasonWachira/Web-App-Project.git
 cd Web-App-Project
 ```
-##  Frontend Setup
-
-Navigate to the `frontend` directory:
-
+## Frontend setup
 ```bash
-cd frontend
-npm install
-npm run dev
-```
-Navigate to the `backend` directory
-```bash
-cd ..
-cd backend 
-npm install
-npm run dev
+cd frontend           # Navigate to the frontend folder
+npm install           # Install dependencies
+npm run dev           # Start the frontend server
 ```
 
+## Backend Setup
+```bash
+cd ..                 # Go back to the project root
+cd backend            # Navigate to the backend folder
+npm install           # Install dependencies
+npm run dev           # Start the backend server
+```
