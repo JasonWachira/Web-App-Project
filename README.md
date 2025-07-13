@@ -19,7 +19,7 @@ cd frontend
 npm install
 npm run dev
 ```
-
+Navigate to the `backend` directory
 ```bash
 cd ..
 cd backend 
