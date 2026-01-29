@@ -10,7 +10,7 @@ function Home() {
   const navigate = useNavigate();
 
   useEffect(() => {
-  fetch('http://localhost:5000/api/scholarships')
+  fetch('https://web-project-1-vlv4.onrender.com/api/scholarships')
     .then(res => res.json())
     .then(data => {
       console.log("API response:", data);

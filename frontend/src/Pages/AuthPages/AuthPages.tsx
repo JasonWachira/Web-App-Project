@@ -14,7 +14,7 @@ function AuthPages() {
     role: '',
   });
 
-  const handleChange = (e) => {
+  const handleChange = (e: any) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
       ...prev,
@@ -22,13 +22,13 @@ function AuthPages() {
     }));
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: any) => {
   e.preventDefault();
 
   try {
     const url = isLogin
-      ? 'http://localhost:5000/api/auth/login'
-      : 'http://localhost:5000/api/auth/register';
+      ? 'https://web-project-1-vlv4.onrender.com/api/auth/login'
+      : 'https://web-project-1-vlv4.onrender.com/api/auth/register';
 
     const payload = isLogin
       ? {
@@ -67,7 +67,7 @@ function AuthPages() {
     
     navigate("/"); 
 
-  } catch (err) {
+  } catch (err: any) {
     console.error("Error:", err.message);
     alert(err.message);
   }
@@ -147,7 +147,7 @@ function AuthPages() {
     </div>
   );
 }
-function LoginForm({ formData, handleChange, handleSubmit, toggleAuthMode }) {
+function LoginForm({ formData, handleChange, handleSubmit, toggleAuthMode }: any) {
   return (
     <form className='auth-form-container' onSubmit={handleSubmit}>
       <div className='auth-header'>
@@ -193,7 +193,7 @@ function LoginForm({ formData, handleChange, handleSubmit, toggleAuthMode }) {
   );
 }
 
-function SignupForm({ formData, handleChange, handleSubmit, toggleAuthMode }) {
+function SignupForm({ formData, handleChange, handleSubmit, toggleAuthMode }: any) {
   return (
     <form className='auth-form-container' onSubmit={handleSubmit}>
       <div className='auth-header'>

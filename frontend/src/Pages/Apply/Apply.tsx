@@ -43,7 +43,7 @@ function ScholarshipApplication() {
   const totalSteps = 4;
   const [loadingSubmission, setLoadingSubmission] = useState(false);
   const [loadingScholarships, setLoadingScholarships] = useState(true);
-  const [scholarships, setScholarships] = useState([]);
+  const [scholarships, setScholarships] = useState<any[]>([]);
   const [submissionMessage, setSubmissionMessage] = useState({ type: '', text: '' });
   const [scholarshipError, setScholarshipError] = useState('');
   const navigate = useNavigate();
@@ -52,7 +52,7 @@ function ScholarshipApplication() {
     const fetchScholarships = async () => {
       try {
         setLoadingScholarships(true);
-        const response = await fetch('http://localhost:5000/api/scholarships/active');
+        const response = await fetch('https://web-project-1-vlv4.onrender.com/api/scholarships/active');
         if (!response.ok) {
           throw new Error('Failed to fetch scholarships');
         }
@@ -69,7 +69,7 @@ function ScholarshipApplication() {
     fetchScholarships();
   }, []);
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (e: any) => {
     const { name, value } = e.target;
     setFormData(prev => ({
       ...prev,
@@ -97,7 +97,7 @@ function ScholarshipApplication() {
     }
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: any) => {
   e.preventDefault();
 
   if (!formData.scholarshipTitle) {
@@ -116,7 +116,7 @@ function ScholarshipApplication() {
   }
 
   try {
-    const response = await fetch('http://localhost:5000/api/applications', {
+    const response = await fetch('https://web-project-1-vlv4.onrender.com/api/applications', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -325,17 +325,17 @@ function ScholarshipApplication() {
       <div className="form-grid">
         <div className="form-group full-width">
           <label>Personal Statement *</label>
-          <textarea name="personalStatement" value={formData.personalStatement} onChange={handleInputChange} rows="8" placeholder="Tell us about yourself, your background, and what drives you to pursue higher education..." required />
+          <textarea name="personalStatement" value={formData.personalStatement} onChange={handleInputChange} rows={8} placeholder="Tell us about yourself, your background, and what drives you to pursue higher education..." required />
           <div className="char-count">{formData.personalStatement.length}/2000</div>
         </div>
         <div className="form-group full-width">
           <label>Why Do You Deserve This Scholarship? *</label>
-          <textarea name="whyDeserveScholarship" value={formData.whyDeserveScholarship} onChange={handleInputChange} rows="6" placeholder="Explain why you are the ideal candidate for this scholarship..." required />
+          <textarea name="whyDeserveScholarship" value={formData.whyDeserveScholarship} onChange={handleInputChange} rows={6} placeholder="Explain why you are the ideal candidate for this scholarship..." required />
           <div className="char-count">{formData.whyDeserveScholarship.length}/1500</div>
         </div>
         <div className="form-group full-width">
           <label>Career Goals & Aspirations *</label>
-          <textarea name="careerGoals" value={formData.careerGoals} onChange={handleInputChange} rows="6" placeholder="Describe your career goals and how this scholarship will help you achieve them..." required />
+          <textarea name="careerGoals" value={formData.careerGoals} onChange={handleInputChange} rows={6} placeholder="Describe your career goals and how this scholarship will help you achieve them..." required />
           <div className="char-count">{formData.careerGoals.length}/1500</div>
         </div>
       </div>
