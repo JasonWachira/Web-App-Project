@@ -29,18 +29,28 @@ function Dashboard() {
 
     const fetchApplications = async () => {
       try {
-        
-        const res = await fetch('https://web-project-2-6qor.onrender.com/api/applications/my-applications', {
+        const res = await fetch('https://web-project-2-6qor.onrender.com/api/auth/profile', {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         });
-        const data = await res.json();
-        if (data.success) {
+        const userData = await res.json();
+        
+        if (userData.success) {
+          const role = userData.data.role;
           
-          setApplications(data.data || []);
-        } else {
-          console.error("Application fetch failed:", data.message);
+          // Only fetch student applications if user is a student
+          if (role === 'student') {
+            const appRes = await fetch('https://web-project-2-6qor.onrender.com/api/applications/my-applications', {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            });
+            const appData = await appRes.json();
+            if (appData.success) {
+              setApplications(appData.data || []);
+            }
+          }
         }
       } catch (error) {
         console.error("Error fetching applications:", error);
@@ -78,21 +88,27 @@ function Dashboard() {
       </div>
 
       <div className="applications-section">
-        <h2>Your Scholarship Applications</h2>
-        {!applications || applications.length === 0 ? (
-          <p>No applications yet.</p>
+        <h2>{user?.role === 'student' ? 'Your Scholarship Applications' : 'Dashboard'}</h2>
+        {user?.role === 'student' ? (
+          <>
+            {!applications || applications.length === 0 ? (
+              <p>No applications yet.</p>
+            ) : (
+              <ul>
+                {applications.map((app) => (
+                  <li key={app._id}>
+                    
+                    <strong>{app.scholarship?.title}</strong> — Status: {app.status}
+                    
+                    {app.scholarship?.amount && <span> (Amount: ${app.scholarship.amount})</span>}
+                    {app.submittedAt && <span> | Submitted: {new Date(app.submittedAt).toLocaleDateString()}</span>}
+                  </li>
+                ))}
+              </ul>
+            )}
+          </>
         ) : (
-          <ul>
-            {applications.map((app) => (
-              <li key={app._id}>
-                
-                <strong>{app.scholarship?.title}</strong> — Status: {app.status}
-                
-                {app.scholarship?.amount && <span> (Amount: ${app.scholarship.amount})</span>}
-                {app.submittedAt && <span> | Submitted: {new Date(app.submittedAt).toLocaleDateString()}</span>}
-              </li>
-            ))}
-          </ul>
+          <p>Welcome to your provider dashboard! Click "Manage Applications" above to review scholarship applications.</p>
         )}
       </div>
     </div>
