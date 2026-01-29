@@ -249,14 +249,18 @@ function SignupForm({ formData, handleChange, handleSubmit, toggleAuthMode }) {
         </div>
         <div className='form-group'>
           <label htmlFor='role'>Role</label>
-          <input
-            type='text'
+          <select
             id='role'
             name='role'
             value={formData.role}
             onChange={handleChange}
-            placeholder='Role'
-          />
+            required
+          >
+            <option value=''>Select your role</option>
+            <option value='student'>Student</option>
+            <option value='provider'>Scholarship Provider</option>
+            <option value='admin'>Admin</option>
+          </select>
         </div>
         <button type="submit" className="auth-btn primary">
           Create Account
