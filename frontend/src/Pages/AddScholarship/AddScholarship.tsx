@@ -34,7 +34,10 @@ function AddScholarship() {
       minGPA: '',
       schoolLevel: 'any',
       residency: '',
-      gender: 'any'
+      gender: 'any',
+      majors: [],
+      citizenship: [],
+      ethnicity: []
     },
     requirements: {
       essay: false,
