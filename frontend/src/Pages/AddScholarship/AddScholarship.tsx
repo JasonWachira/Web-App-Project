@@ -37,7 +37,7 @@ function AddScholarship() {
       gender: 'any'
     },
     requirements: {
-      essay: { required: false, prompt: '' },
+      essay: false,
       transcript: false,
       recommendation: { required: false, count: 1 }
     }
@@ -319,27 +319,13 @@ function AddScholarship() {
             <label>
               <input
                 type="checkbox"
-                name="requirements.essay.required"
-                checked={formData.requirements.essay.required}
+                name="requirements.essay"
+                checked={formData.requirements.essay as any}
                 onChange={handleChange}
               />
               <span>Essay Required</span>
             </label>
           </div>
-
-          {formData.requirements.essay.required && (
-            <div className="form-group">
-              <label htmlFor="requirements.essay.prompt">Essay Prompt</label>
-              <textarea
-                id="requirements.essay.prompt"
-                name="requirements.essay.prompt"
-                value={formData.requirements.essay.prompt}
-                onChange={handleChange}
-                rows={3}
-                placeholder="What are your career goals?"
-              />
-            </div>
-          )}
 
           <div className="form-group checkbox-group">
             <label>
