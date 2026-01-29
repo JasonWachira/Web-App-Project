@@ -99,9 +99,10 @@ function AddScholarship() {
         residency: formData.eligibility.residency || undefined
       },
       requirements: {
-        ...formData.requirements,
+        essay: formData.requirements.essay ? { required: true } : { required: false },
+        transcript: formData.requirements.transcript || false,
         recommendation: {
-          ...formData.requirements.recommendation,
+          required: formData.requirements.recommendation.required || false,
           count: formData.requirements.recommendation.count || 1
         }
       }
