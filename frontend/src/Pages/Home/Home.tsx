@@ -24,16 +24,16 @@ function Home() {
     });
 }, []);
   const filteredScholarships = scholarships.filter(item => {
-  const name = item.name ?? '';
+  const title = item.title ?? '';
   const description = item.description ?? '';
-  const type = item.level ?? '';
+  const category = item.category ?? '';
 
   const matchesSearch =
-    name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    title.toLowerCase().includes(searchTerm.toLowerCase()) ||
     description.toLowerCase().includes(searchTerm.toLowerCase());
 
   const matchesFilter =
-    filter === 'All' || type.toLowerCase() === filter.toLowerCase();
+    filter === 'All' || category.toLowerCase() === filter.toLowerCase();
 
   return matchesSearch && matchesFilter;
 });
@@ -105,13 +105,13 @@ function Home() {
             <button className="search-button">Search</button>
           </form>
           <div className="search-filters">
-            {['All', 'Undergraduate', 'Graduate', 'PhD', 'Research'].map(type => (
+            {['All', 'academic', 'merit-based', 'need-based', 'athletic'].map(type => (
               <button
                 key={type}
                 className={`filter-btn ${filter === type ? 'active' : ''}`}
                 onClick={() => setFilter(type)}
               >
-                {type}
+                {type.charAt(0).toUpperCase() + type.slice(1).replace('-', ' ')}
               </button>
             ))}
           </div>
@@ -128,11 +128,15 @@ function Home() {
           {filteredScholarships.length > 0 ? (
             filteredScholarships.map((item, index) => (
               <div className="scholarship-card" key={index}>
-                <h3>{item.name}</h3>
-                <p className="location">📍 {item.location}</p>
+                <h3>{item.title}</h3>
+                <p className="category">📚 {item.category}</p>
                 <p>{item.description}</p>
+                <div className="card-footer">
+                  <span className="amount">${item.amount} {item.currency}</span>
+                  <span className="deadline">{new Date(item.deadline).toLocaleDateString()}</span>
+                </div>
                 <div className="card-actions">
-                  <button className="bookmark-btn">♡</button>
+                  <Link to="/apply" className="apply-btn">Apply</Link>
                 </div>
               </div>
             ))
