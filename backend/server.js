@@ -7,8 +7,11 @@ const errorHandler = require('./Middleware/ErrorHandler');
 // Load environment variables
 dotenv.config();
 
-// Connect to database
-connectDB();
+// Connect to database (async - don't block server startup)
+connectDB().catch(err => {
+  console.error('MongoDB connection error:', err.message);
+  console.log('Server will continue running without database');
+});
 
 const app = express();
 
