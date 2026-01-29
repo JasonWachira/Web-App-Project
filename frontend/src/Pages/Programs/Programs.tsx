@@ -50,46 +50,44 @@ function Programs() {
         <div className="programs-grid">
           {programs.map((program, index) => (
             <div className="program-card" key={index}>
-              {program.featured && <div className="featured-badge">⭐ Featured</div>}
               <div className="program-header">
                 <div className="program-meta">
-                  
                   <div className="program-badges">
-                    <span className="badge badge-level">{program.level}</span>
-                    <span className="badge badge-type">{program.type}</span>
-                    <span className="badge badge-deadline">{program.deadline}</span>
+                    <span className="badge badge-level">{program.category}</span>
                   </div>
                 </div>
                 <h3 className="program-title">{program.title}</h3>
-                <div className="university-name">{program.university}</div>
-                <div className="program-location">📍 {program.location}</div>
+                <div className="program-provider">{program.provider?.firstName || 'Provider'} {program.provider?.lastName || ''}</div>
               </div>
               <div className="program-body">
                 <p className="program-description">{program.description}</p>
                 <div className="program-details">
                   <div className="detail-item">
-                    <span className="detail-label">Funding Amount</span>
-                    <span className="detail-value">{program.funding}</span>
+                    <span className="detail-label">Amount</span>
+                    <span className="detail-value">${program.amount} {program.currency}</span>
                   </div>
                   <div className="detail-item">
-                    <span className="detail-label">Duration</span>
-                    <span className="detail-value">{program.duration}</span>
+                    <span className="detail-label">Deadline</span>
+                    <span className="detail-value">{new Date(program.deadline).toLocaleDateString()}</span>
                   </div>
-                  <div className="detail-item">
-                    <span className="detail-label">Eligibility</span>
-                    <span className="detail-value">{program.eligibility}</span>
-                  </div>
-                  <div className="detail-item">
-                    <span className="detail-label">GPA Requirement</span>
-                    <span className="detail-value">{program.gpa}</span>
-                  </div>
+                  {program.eligibility?.minGPA && (
+                    <div className="detail-item">
+                      <span className="detail-label">Min GPA</span>
+                      <span className="detail-value">{program.eligibility.minGPA}</span>
+                    </div>
+                  )}
+                  {program.eligibility?.schoolLevel && (
+                    <div className="detail-item">
+                      <span className="detail-label">Education Level</span>
+                      <span className="detail-value">{program.eligibility.schoolLevel}</span>
+                    </div>
+                  )}
                 </div>
               </div>
               <div className="program-footer">
                 <div className="program-actions">
                   <Link to="/apply" className="btn btn-primary">Apply Now</Link>
                 </div>
-                <button className="bookmark-btn" title="Bookmark">♡</button>
               </div>
             </div>
           ))}
