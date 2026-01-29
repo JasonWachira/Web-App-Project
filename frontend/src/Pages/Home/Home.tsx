@@ -8,6 +8,8 @@ function Home() {
   const [searchTerm, setSearchTerm] = useState('');
   const [filter, setFilter] = useState('All');
   const navigate = useNavigate();
+  const storedUser = localStorage.getItem('user');
+  const user = storedUser ? JSON.parse(storedUser) : null;
 
   useEffect(() => {
   fetch('https://web-project-2-6qor.onrender.com/api/scholarships')
@@ -46,6 +48,9 @@ function Home() {
           <Link to="/about">ABOUT US</Link>
           <Link to="/testimonials">Testimonials</Link>
           {localStorage.getItem('token') && <Link to="/dashboard">DASHBOARD</Link>}
+          {(user?.role === 'provider' || user?.role === 'admin') && (
+            <Link to="/add-scholarship">ADD SCHOLARSHIP</Link>
+          )}
         </div>
         <div className="auth-links">
   {!localStorage.getItem("token") ? (

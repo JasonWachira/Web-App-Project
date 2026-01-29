@@ -68,6 +68,11 @@ function Dashboard() {
         <p><strong>Name:</strong> {user?.firstName} {user?.lastName}</p>
         <p><strong>Email:</strong> {user?.email}</p>
         <p><strong>Role:</strong> {user?.role}</p>
+        {(user?.role === 'provider' || user?.role === 'admin') && (
+          <div className="provider-actions">
+            <a className="add-scholarship-link" href="/add-scholarship">Add Scholarship</a>
+          </div>
+        )}
       </div>
 
       <div className="applications-section">

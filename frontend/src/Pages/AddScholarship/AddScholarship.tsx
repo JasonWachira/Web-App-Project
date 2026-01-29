@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './AddScholarship.css';
 
@@ -6,6 +6,21 @@ function AddScholarship() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState({ type: '', text: '' });
+  const [isAuthorized, setIsAuthorized] = useState(true);
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem('user');
+    const user = storedUser ? JSON.parse(storedUser) : null;
+    const role = user?.role;
+
+    if (!user || (role !== 'provider' && role !== 'admin')) {
+      setIsAuthorized(false);
+      setMessage({
+        type: 'error',
+        text: 'Only scholarship providers can access this page. Please log in with a provider account.'
+      });
+    }
+  }, []);
 
   const [formData, setFormData] = useState({
     title: '',
@@ -54,8 +69,12 @@ function AddScholarship() {
     setMessage({ type: '', text: '' });
 
     const token = localStorage.getItem('token');
-    if (!token) {
-      setMessage({ type: 'error', text: 'You must be logged in as a provider' });
+    const storedUser = localStorage.getItem('user');
+    const user = storedUser ? JSON.parse(storedUser) : null;
+    const role = user?.role;
+
+    if (!token || !user || (role !== 'provider' && role !== 'admin')) {
+      setMessage({ type: 'error', text: 'You must be logged in as a provider to create scholarships.' });
       setLoading(false);
       return;
     }
@@ -100,6 +119,11 @@ function AddScholarship() {
       )}
 
       <form onSubmit={handleSubmit} className="scholarship-form">
+        {!isAuthorized && (
+          <div className="message error">
+            You do not have access to create scholarships.
+          </div>
+        )}
         <div className="form-section">
           <h2>Basic Information</h2>
           
