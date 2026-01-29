@@ -8,6 +8,7 @@ import Dashboard from './Pages/Dashboard/Dashboard';
 import AboutUs from './Pages/AboutUs/AboutUs';
 import ContactUs from './Pages/ContactUs/ContactUs';
 import Testimonials from './Pages/Testimonials/Testimonials';
+import AddScholarship from './Pages/AddScholarship/AddScholarship';
 function App() {
   
 
@@ -20,9 +21,8 @@ function App() {
       <Route path='/about' element={<AboutUs/>}></Route>
       <Route path='/contact' element={<ContactUs/>}></Route>
       <Route path='/testimonials' element={<Testimonials/>}></Route>
-
       <Route path='/dashboard' element={<Dashboard/>}></Route>
-      
+      <Route path='/add-scholarship' element={<AddScholarship/>}></Route>
     </Routes>
   )
 }
