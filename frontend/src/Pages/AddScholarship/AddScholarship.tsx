@@ -45,22 +45,30 @@ function AddScholarship() {
 
   const handleChange = (e: any) => {
     const { name, value, type, checked } = e.target;
-    
-    if (name.includes('.')) {
-      const [parent, child] = name.split('.');
+    const nextValue = type === 'checkbox' ? checked : value;
+
+    if (!name.includes('.')) {
       setFormData(prev => ({
         ...prev,
-        [parent]: {
-          ...(prev as any)[parent],
-          [child]: type === 'checkbox' ? checked : value
-        }
+        [name]: nextValue
       }));
-    } else {
-      setFormData(prev => ({
-        ...prev,
-        [name]: type === 'checkbox' ? checked : value
-      }));
+      return;
     }
+
+    const path = name.split('.');
+    setFormData(prev => {
+      const updated: any = { ...prev };
+      let cursor: any = updated;
+
+      for (let i = 0; i < path.length - 1; i += 1) {
+        const key = path[i];
+        cursor[key] = { ...(cursor[key] || {}) };
+        cursor = cursor[key];
+      }
+
+      cursor[path[path.length - 1]] = nextValue;
+      return updated;
+    });
   };
 
   const handleSubmit = async (e: any) => {
