@@ -6,32 +6,6 @@ function ScholarshipApplication() {
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
   const [isStudentOnly, setIsStudentOnly] = useState(false);
-
-  // Check if user is a student
-  useEffect(() => {
-    const storedUser = localStorage.getItem('user');
-    const userData = storedUser ? JSON.parse(storedUser) : null;
-    setUser(userData);
-
-    if (userData && userData.role !== 'student') {
-      setIsStudentOnly(true);
-    }
-  }, []);
-
-  if (isStudentOnly) {
-    return (
-      <div className="apply-container">
-        <div className="access-denied">
-          <h2>Access Restricted</h2>
-          <p>Only students can apply for scholarships.</p>
-          <p>Providers can create and manage scholarships from their dashboard.</p>
-          <button onClick={() => navigate('/dashboard')}>Go to Dashboard</button>
-          <button onClick={() => navigate('/')}>Go Home</button>
-        </div>
-      </div>
-    );
-  }
-
   const [formData, setFormData] = useState({
     scholarshipTitle: '', 
     firstName: '',
@@ -68,6 +42,31 @@ function ScholarshipApplication() {
     financialNeed: ''
   });
 
+  // Check if user is a student
+  useEffect(() => {
+    const storedUser = localStorage.getItem('user');
+    const userData = storedUser ? JSON.parse(storedUser) : null;
+    setUser(userData);
+
+    if (userData && userData.role !== 'student') {
+      setIsStudentOnly(true);
+    }
+  }, []);
+
+  if (isStudentOnly) {
+    return (
+      <div className="apply-container">
+        <div className="access-denied">
+          <h2>Access Restricted</h2>
+          <p>Only students can apply for scholarships.</p>
+          <p>Providers can create and manage scholarships from their dashboard.</p>
+          <button onClick={() => navigate('/dashboard')}>Go to Dashboard</button>
+          <button onClick={() => navigate('/')}>Go Home</button>
+        </div>
+      </div>
+    );
+  }
+
   const [currentStep, setCurrentStep] = useState(1);
   const totalSteps = 4;
   const [loadingSubmission, setLoadingSubmission] = useState(false);
@@ -75,7 +74,6 @@ function ScholarshipApplication() {
   const [scholarships, setScholarships] = useState<any[]>([]);
   const [submissionMessage, setSubmissionMessage] = useState({ type: '', text: '' });
   const [scholarshipError, setScholarshipError] = useState('');
-  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchScholarships = async () => {
