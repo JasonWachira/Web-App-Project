@@ -11,6 +11,7 @@ import Testimonials from './Pages/Testimonials/Testimonials';
 import AddScholarship from './Pages/AddScholarship/AddScholarship';
 import ProviderApplications from './Pages/ProviderApplications/ProviderApplications';
 import ManageScholarships from './Pages/ManageScholarships/ManageScholarships';
+import EditScholarship from './Pages/EditScholarship/EditScholarship';
 function App() {
   
 
@@ -27,6 +28,7 @@ function App() {
       <Route path='/add-scholarship' element={<AddScholarship/>}></Route>
       <Route path='/provider/applications' element={<ProviderApplications/>}></Route>
       <Route path='/manage-scholarships' element={<ManageScholarships/>}></Route>
+      <Route path='/edit-scholarship/:id' element={<EditScholarship/>}></Route>
     </Routes>
   )
 }
