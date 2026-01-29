@@ -79,6 +79,26 @@ function AddScholarship() {
       return;
     }
 
+    const payload = {
+      ...formData,
+      amount: formData.amount === '' ? undefined : Number(formData.amount),
+      eligibility: {
+        ...formData.eligibility,
+        minGPA:
+          formData.eligibility.minGPA === ''
+            ? undefined
+            : Number(formData.eligibility.minGPA),
+        residency: formData.eligibility.residency || undefined
+      },
+      requirements: {
+        ...formData.requirements,
+        recommendation: {
+          ...formData.requirements.recommendation,
+          count: formData.requirements.recommendation.count || 1
+        }
+      }
+    };
+
     try {
       const response = await fetch('https://web-project-2-6qor.onrender.com/api/scholarships', {
         method: 'POST',
@@ -86,7 +106,7 @@ function AddScholarship() {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`
         },
-        body: JSON.stringify(formData)
+        body: JSON.stringify(payload)
       });
 
       const result = await response.json();
@@ -95,7 +115,8 @@ function AddScholarship() {
         setMessage({ type: 'success', text: 'Scholarship created successfully!' });
         setTimeout(() => navigate('/programs'), 2000);
       } else {
-        setMessage({ type: 'error', text: result.message || 'Failed to create scholarship' });
+        const errorText = result?.message || result?.errors?.[0]?.msg || 'Failed to create scholarship';
+        setMessage({ type: 'error', text: errorText });
       }
     } catch (error) {
       console.error('Error:', error);
@@ -349,7 +370,7 @@ function AddScholarship() {
           <button
             type="submit"
             className="btn-primary"
-            disabled={loading}
+            disabled={loading || !isAuthorized}
           >
             {loading ? 'Creating...' : 'Create Scholarship'}
           </button>
