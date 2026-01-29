@@ -82,6 +82,7 @@ function Dashboard() {
         {(user?.role === 'provider' || user?.role === 'admin') && (
           <div className="provider-actions">
             <a className="add-scholarship-link" href="/add-scholarship">Add Scholarship</a>
+            <Link to="/manage-scholarships" className="add-scholarship-link">Manage Scholarships</Link>
             <Link to="/provider/applications" className="add-scholarship-link">Manage Applications</Link>
           </div>
         )}

@@ -10,6 +10,7 @@ import ContactUs from './Pages/ContactUs/ContactUs';
 import Testimonials from './Pages/Testimonials/Testimonials';
 import AddScholarship from './Pages/AddScholarship/AddScholarship';
 import ProviderApplications from './Pages/ProviderApplications/ProviderApplications';
+import ManageScholarships from './Pages/ManageScholarships/ManageScholarships';
 function App() {
   
 
@@ -25,6 +26,7 @@ function App() {
       <Route path='/dashboard' element={<Dashboard/>}></Route>
       <Route path='/add-scholarship' element={<AddScholarship/>}></Route>
       <Route path='/provider/applications' element={<ProviderApplications/>}></Route>
+      <Route path='/manage-scholarships' element={<ManageScholarships/>}></Route>
     </Routes>
   )
 }
