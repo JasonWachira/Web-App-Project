@@ -30,48 +30,23 @@ function AddScholarship() {
     deadline: '',
     category: '',
     status: 'active',
-    eligibility: {
-      minGPA: '',
-      schoolLevel: 'any',
-      residency: '',
-      gender: 'any',
-      majors: [],
-      citizenship: [],
-      ethnicity: []
-    },
-    requirements: {
-      essay: false,
-      transcript: false,
-      recommendation: { required: false, count: 1 }
-    }
+    minGPA: '',
+    schoolLevel: 'any',
+    residency: '',
+    gender: 'any',
+    essayRequired: false,
+    transcriptRequired: false,
+    recommendationRequired: false,
+    recommendationCount: 1
   });
 
   const handleChange = (e: any) => {
     const { name, value, type, checked } = e.target;
     const nextValue = type === 'checkbox' ? checked : value;
-
-    if (!name.includes('.')) {
-      setFormData(prev => ({
-        ...prev,
-        [name]: nextValue
-      }));
-      return;
-    }
-
-    const path = name.split('.');
-    setFormData(prev => {
-      const updated: any = { ...prev };
-      let cursor: any = updated;
-
-      for (let i = 0; i < path.length - 1; i += 1) {
-        const key = path[i];
-        cursor[key] = { ...(cursor[key] || {}) };
-        cursor = cursor[key];
-      }
-
-      cursor[path[path.length - 1]] = nextValue;
-      return updated;
-    });
+    setFormData(prev => ({
+      ...prev,
+      [name]: nextValue
+    }));
   };
 
   const handleSubmit = async (e: any) => {
@@ -91,22 +66,25 @@ function AddScholarship() {
     }
 
     const payload = {
-      ...formData,
+      title: formData.title,
+      description: formData.description,
       amount: formData.amount === '' ? undefined : Number(formData.amount),
+      currency: formData.currency,
+      deadline: formData.deadline,
+      category: formData.category,
+      status: 'active',
       eligibility: {
-        ...formData.eligibility,
-        minGPA:
-          formData.eligibility.minGPA === ''
-            ? undefined
-            : Number(formData.eligibility.minGPA),
-        residency: formData.eligibility.residency || undefined
+        minGPA: formData.minGPA === '' ? undefined : Number(formData.minGPA),
+        schoolLevel: formData.schoolLevel,
+        residency: formData.residency || undefined,
+        gender: formData.gender
       },
       requirements: {
-        essay: formData.requirements.essay ? { required: true } : { required: false },
-        transcript: formData.requirements.transcript || false,
+        essay: formData.essayRequired ? { required: true } : { required: false },
+        transcript: formData.transcriptRequired || false,
         recommendation: {
-          required: formData.requirements.recommendation.required || false,
-          count: formData.requirements.recommendation.count || 1
+          required: formData.recommendationRequired || false,
+          count: formData.recommendationCount || 1
         }
       }
     };
@@ -259,9 +237,9 @@ function AddScholarship() {
               <label htmlFor="eligibility.minGPA">Minimum GPA</label>
               <input
                 type="number"
-                id="eligibility.minGPA"
-                name="eligibility.minGPA"
-                value={formData.eligibility.minGPA}
+                id="minGPA"
+                name="minGPA"
+                value={formData.minGPA}
                 onChange={handleChange}
                 min="0"
                 max="4"
@@ -273,9 +251,9 @@ function AddScholarship() {
             <div className="form-group">
               <label htmlFor="eligibility.schoolLevel">Education Level</label>
               <select
-                id="eligibility.schoolLevel"
-                name="eligibility.schoolLevel"
-                value={formData.eligibility.schoolLevel}
+                id="schoolLevel"
+                name="schoolLevel"
+                value={formData.schoolLevel}
                 onChange={handleChange}
               >
                 <option value="any">Any</option>
@@ -292,9 +270,9 @@ function AddScholarship() {
               <label htmlFor="eligibility.residency">Residency</label>
               <input
                 type="text"
-                id="eligibility.residency"
-                name="eligibility.residency"
-                value={formData.eligibility.residency}
+                id="residency"
+                name="residency"
+                value={formData.residency}
                 onChange={handleChange}
                 placeholder="e.g., USA, Any"
               />
@@ -303,9 +281,9 @@ function AddScholarship() {
             <div className="form-group">
               <label htmlFor="eligibility.gender">Gender Requirement</label>
               <select
-                id="eligibility.gender"
-                name="eligibility.gender"
-                value={formData.eligibility.gender}
+                id="gender"
+                name="gender"
+                value={formData.gender}
                 onChange={handleChange}
               >
                 <option value="any">Any</option>
@@ -323,8 +301,8 @@ function AddScholarship() {
             <label>
               <input
                 type="checkbox"
-                name="requirements.essay"
-                checked={formData.requirements.essay as any}
+                name="essayRequired"
+                checked={formData.essayRequired}
                 onChange={handleChange}
               />
               <span>Essay Required</span>
@@ -335,8 +313,8 @@ function AddScholarship() {
             <label>
               <input
                 type="checkbox"
-                name="requirements.transcript"
-                checked={formData.requirements.transcript}
+                name="transcriptRequired"
+                checked={formData.transcriptRequired}
                 onChange={handleChange}
               />
               <span>Transcript Required</span>
@@ -347,8 +325,8 @@ function AddScholarship() {
             <label>
               <input
                 type="checkbox"
-                name="requirements.recommendation.required"
-                checked={formData.requirements.recommendation.required}
+                name="recommendationRequired"
+                checked={formData.recommendationRequired}
                 onChange={handleChange}
               />
               <span>Recommendation Letter Required</span>
