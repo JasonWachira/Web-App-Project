@@ -27,8 +27,8 @@ function AuthPages() {
 
   try {
     const url = isLogin
-      ? 'https://web-project-1-vlv4.onrender.com/api/auth/login'
-      : 'https://web-project-1-vlv4.onrender.com/api/auth/register';
+      ? 'https://web-project-2-6qor.onrender.com/api/auth/login'
+      : 'https://web-project-2-6qor.onrender.com/api/auth/register';
 
     const payload = isLogin
       ? {

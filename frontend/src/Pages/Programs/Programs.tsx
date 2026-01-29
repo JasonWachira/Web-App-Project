@@ -6,7 +6,7 @@ function Programs() {
   const [programs, setPrograms] = useState([]);
 
   useEffect(() => {
-    fetch('https://web-project-1-vlv4.onrender.com/api/scholarships')
+    fetch('https://web-project-2-6qor.onrender.com/api/scholarships')
       .then(res => res.json())
       .then(data => {
         setPrograms(data?.data?.scholarships || []);

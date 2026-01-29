@@ -52,7 +52,7 @@ function ScholarshipApplication() {
     const fetchScholarships = async () => {
       try {
         setLoadingScholarships(true);
-        const response = await fetch('https://web-project-1-vlv4.onrender.com/api/scholarships/active');
+        const response = await fetch('https://web-project-2-6qor.onrender.com/api/scholarships/active');
         if (!response.ok) {
           throw new Error('Failed to fetch scholarships');
         }
@@ -116,7 +116,7 @@ function ScholarshipApplication() {
   }
 
   try {
-    const response = await fetch('https://web-project-1-vlv4.onrender.com/api/applications', {
+    const response = await fetch('https://web-project-2-6qor.onrender.com/api/applications', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

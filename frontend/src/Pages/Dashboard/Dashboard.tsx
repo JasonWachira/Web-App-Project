@@ -10,7 +10,7 @@ function Dashboard() {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const res = await fetch('https://web-project-1-vlv4.onrender.com/api/auth/profile', {
+        const res = await fetch('https://web-project-2-6qor.onrender.com/api/auth/profile', {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -29,7 +29,7 @@ function Dashboard() {
     const fetchApplications = async () => {
       try {
         
-        const res = await fetch('https://web-project-1-vlv4.onrender.com/api/applications/my-applications', {
+        const res = await fetch('https://web-project-2-6qor.onrender.com/api/applications/my-applications', {
           headers: {
             Authorization: `Bearer ${token}`,
           },
