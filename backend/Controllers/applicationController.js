@@ -237,10 +237,40 @@ const deleteApplication = async (req, res) => {
   }
 };
 
+// Get applications for provider's scholarships
+const getProviderApplications = async (req, res) => {
+  try {
+    const Scholarship = require('../Models/Scholarships');
+    
+    // Get all scholarships created by this provider
+    const scholarships = await Scholarship.find({ provider: req.user._id });
+    const scholarshipIds = scholarships.map(s => s._id);
+
+    // Get all applications for these scholarships
+    const applications = await Application.find({ scholarship: { $in: scholarshipIds } })
+      .populate('student', 'firstName lastName email studentProfile')
+      .populate('scholarship', 'title amount deadline')
+      .sort({ submittedAt: -1 });
+
+    res.json({
+      success: true,
+      data: applications,
+      count: applications.length
+    });
+  } catch (error) {
+    console.error('Get provider applications error:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Server error fetching applications'
+    });
+  }
+};
+
 module.exports = {
   submitApplication,
   getMyApplications,
   getApplication,
   updateApplicationStatus,
-  deleteApplication
+  deleteApplication,
+  getProviderApplications
 };

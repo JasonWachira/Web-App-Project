@@ -9,6 +9,7 @@ import AboutUs from './Pages/AboutUs/AboutUs';
 import ContactUs from './Pages/ContactUs/ContactUs';
 import Testimonials from './Pages/Testimonials/Testimonials';
 import AddScholarship from './Pages/AddScholarship/AddScholarship';
+import ProviderApplications from './Pages/ProviderApplications/ProviderApplications';
 function App() {
   
 
@@ -23,6 +24,7 @@ function App() {
       <Route path='/testimonials' element={<Testimonials/>}></Route>
       <Route path='/dashboard' element={<Dashboard/>}></Route>
       <Route path='/add-scholarship' element={<AddScholarship/>}></Route>
+      <Route path='/provider/applications' element={<ProviderApplications/>}></Route>
     </Routes>
   )
 }
